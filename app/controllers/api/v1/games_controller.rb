@@ -5,8 +5,8 @@ class Api::V1::GamesController < ApiController
   end
 
   def create
-    response = GameCreatorService.new(request.env["HTTP_X_API_KEY"], params[:opponent_email])
-    response.run
-    render json: response.game, message: response.messages
+    game_creator = GameCreatorService.new(request.env["HTTP_X_API_KEY"], params[:opponent_email])
+    game_creator.run
+    render json: game_creator.game, message: game_creator.messages
   end
 end
