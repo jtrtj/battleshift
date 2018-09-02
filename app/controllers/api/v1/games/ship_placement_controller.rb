@@ -1,4 +1,6 @@
 class Api::V1::Games::ShipPlacementController < ApiController
+  before_action :authorized?
+
   def create
     game = Game.find(params[:game_id])
     user = User.find_by(user_token: request.env["HTTP_X_API_KEY"])
@@ -8,7 +10,7 @@ class Api::V1::Games::ShipPlacementController < ApiController
     else
       board = game.player_2_board
     end
-    
+
     ship = Ship.new(params["ship_size"])
     ship_placer = ShipPlacer.new(board, ship, params[:start_space], params[:end_space])
 
