@@ -24,6 +24,7 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'faker'
+  gem 'webmock'
 end
 
 group :test do

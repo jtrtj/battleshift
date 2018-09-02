@@ -8,7 +8,7 @@ class Api::V1::Games::ShipPlacementController < ApiController
     else
       board = game.player_2_board
     end
-
+    
     ship = Ship.new(params["ship_size"])
     ship_placer = ShipPlacer.new(board, ship, params[:start_space], params[:end_space])
 
