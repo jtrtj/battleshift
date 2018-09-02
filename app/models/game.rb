@@ -21,7 +21,7 @@ class Game < ApplicationRecord
       update(current_turn: 0)
     end
   end
-  
+
   def current_turn_user
     if current_turn == "player 1"
       player_1

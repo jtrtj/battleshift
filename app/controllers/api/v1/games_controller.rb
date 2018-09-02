@@ -17,4 +17,3 @@ class Api::V1::GamesController < ApiController
     render json: game
   end
 end
-
