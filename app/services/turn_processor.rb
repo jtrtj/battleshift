@@ -18,14 +18,7 @@ class TurnProcessor
     @messages.join(" ")
   end
 
-  def game_over?
-    opponent.ships.all? do |ship|
-      ship.is_sunk?
-    end
-  end
-
   private
-
   attr_reader :game, :target
 
   def attack_opponent
@@ -54,10 +47,10 @@ class TurnProcessor
   #   @messages << "The computer's shot resulted in a #{result}."
   #   game.player_2_turns += 1
   # end
-
-  def player
-    Player.new(game.player_1_board)
-  end
+  #
+  # def player
+  #   Player.new(game.player_1_board)
+  # end
 
   def opponent
     if game.current_turn == "player 1"
@@ -67,4 +60,9 @@ class TurnProcessor
     end
   end
 
+  def game_over?
+    opponent.ships.all? do |ship|
+      ship.is_sunk?
+    end
+  end
 end
