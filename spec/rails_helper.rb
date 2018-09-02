@@ -11,6 +11,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'support/factory_bot'
 require 'faker'
+require 'webmock/rspec'
 
 
 Shoulda::Matchers.configure do |config|
@@ -81,4 +82,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each) do
+    WebMock.reset!
+  end
 end

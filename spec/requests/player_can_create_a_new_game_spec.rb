@@ -2,13 +2,14 @@ require 'rails_helper'
 
 describe 'Activated User Starts a new game' do
   context 'by hitting /api/v1/games?options=<opponent_email>' do
-    xit 'will create a new game between user and opponent' do
-      user = create(:user)
-      opponent = create(:user)
+    it 'will create a new game between user and opponent' do
+      user = User.create(email: 'abc', name: 'def', password: 'ghi', user_token: 'token1', status: 1 )
+      opponent = User.create(email: 'jkl', name: 'mno', password: 'pqr', user_token: 'token2', status: 1 )
       opponent_email = opponent.email
 
       options = { opponent_email: opponent_email }
-      post "/api/v1/games"
+      
+      post "/api/v1/games" 
     end
   end
 end

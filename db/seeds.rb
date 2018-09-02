@@ -7,27 +7,27 @@ player_2 = User.create(email: "jtr022@gmail.com", name: 'john', password: '123',
 sm_ship = Ship.new(2)
 md_ship = Ship.new(3)
 
-# Place Player 1 ships
-ShipPlacer.new( player_1_board,
-                sm_ship,
-               "A1",
-               "A2").run
+# # Place Player 1 ships
+# ShipPlacer.new( player_1_board,
+#                 sm_ship,
+#                "A1",
+#                "A2").run
 
-ShipPlacer.new( player_1_board,
-                md_ship,
-               "B1",
-               "D1").run
+# ShipPlacer.new( player_1_board,
+#                 md_ship,
+#                "B1",
+#                "D1").run
 
-# Place Player 2 ships
-ShipPlacer.new( player_2_board,
-                sm_ship.dup,
-               "A1",
-               "A2").run
+# # Place Player 2 ships
+# ShipPlacer.new( player_2_board,
+#                 sm_ship.dup,
+#                "A1",
+#                "A2").run
 
-ShipPlacer.new( player_2_board,
-                md_ship.dup,
-               "B1",
-               "D1").run
+# ShipPlacer.new( player_2_board,
+#                 md_ship.dup,
+#                "B1",
+#                "D1").run
 
 game_attributes = {
   player_1_board: player_1_board,
