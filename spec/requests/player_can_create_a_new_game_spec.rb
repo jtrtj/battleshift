@@ -31,7 +31,7 @@ describe 'Activated User Starts a new game' do
       post "/api/v1/games", headers: header, params: new_game_options
 
       game_response = JSON.parse(response.body, symbolize_names: true)
-
+     
       expect(Game.count).to eq(0)
       expect(game_response[:message]).to eq("Game was not created. Check your opponent credentials.")
     end

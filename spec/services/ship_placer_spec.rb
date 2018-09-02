@@ -7,7 +7,7 @@ require './app/services/values/space'
 describe ShipPlacer do
   before(:each) do
     @board = Board.new(4)
-    @ship = Ship.new(2)
+    @ship = double(length: 2)
     @placer = ShipPlacer.new(@board, @ship, "A1", "A2")
   end
 
