@@ -8,7 +8,10 @@ describe 'Activated User Starts a new game' do
       opponent_email = opponent.email
 
       options = { opponent_email: opponent_email }
-      post "/api/v1/games"
+
+      headers = { "CONTENT_TYPE" => "application/json", "HTTP_X_API_KEY" => user.user_token }
+
+      post "/api/v1/games", headers: headers
     end
   end
 end
