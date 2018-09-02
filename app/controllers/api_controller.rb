@@ -1,4 +1,5 @@
 class ApiController < ActionController::API
+
   def current_user
     if request.env["HTTP_X_API_KEY"]
       @current_user ||= User.find_by(user_token: request.env["HTTP_X_API_KEY"])
@@ -6,7 +7,9 @@ class ApiController < ActionController::API
   end
 
   def current_users_turn?
-    current_user == game.current_turn_user
+    if current_user != game.current_turn_user
+      render json: game, message: "Invalid move. It's your opponent's turn", status: 400
+    end
   end
 
   def authorized?
