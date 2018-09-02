@@ -5,6 +5,9 @@ class Api::V1::GamesController < ApiController
   end
 
   def create
+    response = GameCreatorService.new(request.env["HTTP_X_API_KEY"], params[:opponent_email])
+    response.result
+    
     player_1 = User.find_by(user_token: request.env["HTTP_X_API_KEY"])
     player_2 = User.find_by(email: params[:opponent_email])
     player_1_board = Board.new(4)
@@ -14,6 +17,6 @@ class Api::V1::GamesController < ApiController
                         player_2_id: player_2.id,
                         player_1_board: player_1_board,
                         player_2_board: player_2_board)
-    render json: game
+    render json: game, message: "New Game Created."
   end
 end
