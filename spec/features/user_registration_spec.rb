@@ -26,7 +26,7 @@ describe "An Unregistered User" do
       expect(page).to have_content("Logged in as #{attributes[:name]}")             
       expect(page).to have_content("This account has not yet been activated. Please check your email.")
     end
-
+ 
     it "cannot register if password fields do not match" do
       visit '/register'
       
@@ -47,19 +47,28 @@ describe "An Unregistered User" do
       expect(current_path).to eq('/register')
       expect(page).to have_content("Something went wrong")
     end
+
+    it 'cannot register with and email that is all ready registered.' do
+      create(:user, email: "used@gmail.com") 
+
+      visit '/register'
+      
+      attributes = {
+                    email:    'used@gmail.com',
+                    name:     'Captain',
+                    password: 'password',
+                    unmatched_password: 'password'
+                   }
+
+      fill_in 'user[email]',	with: attributes[:email]
+      fill_in 'user[name]',	with: attributes[:name]
+      fill_in 'user[password]',	with: attributes[:password]
+      fill_in 'user[password_confirmation]',	with: attributes[:unmatched_password]
+
+      click_button 'Submit'
+                
+      expect(current_path).to eq('/register')
+      expect(page).to have_content("Something went wrong")
+    end
   end
 end
-
-=begin
-As a guest user
-When I visit "/"
-And I click "Register"
-Then I should be on "/register"
-And when I fill in an email address (required)
-And I fill in name (required)
-And I fill in password and password confirmation (required)
-And I click submit
-Then I should be redirected to "/dashboard"
-And I should see a message that says "Logged in as <SOME_NAME>"
-And I should see "This account has not yet been activated. Please check your email."
-=end
