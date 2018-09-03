@@ -17,7 +17,7 @@ class GameCreatorService
   end
 
   private
-  
+
   def find_user
     User.find_by(user_token: @user_api_key)
   end
@@ -31,8 +31,8 @@ class GameCreatorService
   end
 
   def create_game
-    if find_opponent.nil?
-      @messages << "Game was not created. Check your opponent credentials."
+    if find_opponent.nil? || find_user.nil?
+      @messages << "Game was not created. Check your credentials."
     else
       @game = Game.create!(player_1_id: find_user.id,
                           player_2_id: find_opponent.id,
@@ -43,9 +43,9 @@ class GameCreatorService
   end
 
   def blank_game
-    Game.new(player_1_id: nil, 
-             player_2_id: nil, 
-             player_1_board: Board.new(1), 
+    Game.new(player_1_id: nil,
+             player_2_id: nil,
+             player_1_board: Board.new(1),
              player_2_board: Board.new(1))
   end
 end

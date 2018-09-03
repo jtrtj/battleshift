@@ -2,7 +2,7 @@ class Api::V1::Games::ShipPlacementController < ApiController
   before_action :authorized?
 
   def create
-    binding.pry
+    sps = ShipPlacerService.new(params, request.env["HTTP_X_API_KEY"])
     game = Game.find(params[:game_id])
     user = User.find_by(user_token: request.env["HTTP_X_API_KEY"])
 

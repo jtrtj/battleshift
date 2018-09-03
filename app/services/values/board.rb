@@ -1,10 +1,12 @@
 class Board
   attr_reader :length,
-              :board
+              :board,
+              :ships_in_play
 
-  def initialize(length)
-    @length = length
-    @board = create_grid
+  def initialize(length, ships_in_play = 2)
+    @length        = length
+    @ships_in_play = ships_in_play
+    @board         = create_grid
   end
 
   def ships
