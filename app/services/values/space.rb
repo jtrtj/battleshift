@@ -8,6 +8,7 @@ class Space
   end
 
   def attack!
+    binding.pry
     @status = if contents && not_attacked?
                 contents.attack!
                 "Hit"
